@@ -23,15 +23,19 @@ So we have a model view for each Grumble. What can it do?
 * Generate a DOM representation of each Grumble.
   * Defined by a Handlebars template: `grumbleTemplate`.
   * Attached to the DOM using a `render` method.
-* Acts as a controller. Manages CRUD interactions with model.
+ <!-- maybe mention that it's listening for events, DOM and model -->
+* Acts as a controller. Manages CRUD interactions with model. <!-- maybe mention non-CRUD too? -->
   * `updateGrumble`, `deleteGrumble`.
 * Generates DOM elements (e.g., forms) required for CRUD interactions.
   * Defined by a Handlebars template: `grumbleFormTemplate`.
   * A mini "specialty view" of sorts.
 
+
 Next: a **collection view** that does the same thing for multiple models in different scenarios.
   * When we first load Grumblr, all of our Grumbles should be rendered.
   * When we create a new Grumble, it should be appended to our existing list of Grumbles.
+<!-- maybe added instead of appended, since we could put it anywhere -->
+<!-- realizing two that another responsibility of collection views is sorting... maybe we can mention that here and add that in as a nice bonus? -->
 
 ## Let's Get Started
 
@@ -60,6 +64,8 @@ Next, we're going to bind our collection view to a DOM element.
 
 In Backbone, we can define an `el` property that indicates a DOM element to which our collection view, once rendered, will automatically append to.  
 * So if we set `el: "#grumbles"`, our collection view will automatically append to `<div id="grumbles"></div>` upon rendering.
+
+<!-- maybe note that in this case, the div has to alredy appear on the page! -->
 
 ```js
 App.Views.GrumblesList = Backbone.View.extend({
@@ -170,6 +176,9 @@ What To Do
 * Create a listener that re-renders our entire view upon reset.
 * Create a listener that renders a new model view when one is added to our collection.
 
+
+<!-- you should talk about how on the `add` event, the callback gets the added item passed in (feature of BB.js)-->
+
 ```js
 App.Views.GrumblesList = Backbone.View.extend({
   el: "#grumbles",
@@ -221,7 +230,9 @@ $(document).ready(function() {
 
 That's it...for now.
 * As we continue building on our Backbone application, we'll revisit our collection view and add on some additional functionality.
-* Wait, we don't need events here? Why?
+* Wait, we don't need DOM events here? Why?
+
+<!-- maybe mention sorting as an example of DOM events -->
 
 ## Break
 
@@ -229,6 +240,8 @@ That's it...for now.
 
 So we have views for our Grumbles -- model and collection. What about one for our new Grumble form?
 * Let's make a **specialty view.**
+
+<!-- maybe justify why we're not putting this in the item / collection views? -->
 
 We've already gone everything we need to know in order to create a specialty view. Now, it's just a matter of putting all the pieces together.
 * You're going to spend the rest of this class making one.
